@@ -1,0 +1,23 @@
+.split-pane{
+		-fx-background-color: grey ;
+		-fx-border-color: black;
+}
+
+.tab-pane{
+		-fx-background-color: yellow  ;
+		-fx-border-color: black;
+}
+
+.tab{
+		-fx-background-color: grey ;
+		-fx-border-color: black ;
+}
+
+.list-view{
+	-fx-background-color: grey;
+
+	
+}
+.root{
+	-fx-background-color: rgb(192,192,192);
+}		
