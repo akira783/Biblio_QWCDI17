@@ -15,9 +15,12 @@ public class Main extends Application {
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root,400,400);
 		
-		MenueBibliothecaire  mb = new MenueBibliothecaire();
+		MenueBibliothecaire  mb = new MenueBibliothecaire(primaryStage);
 		
 		root.getChildren().add(mb);
+		
+		scene.getStylesheets().add("button.css");
+
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
