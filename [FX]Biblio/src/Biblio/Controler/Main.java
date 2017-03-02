@@ -1,9 +1,10 @@
-package application;
+package Biblio.Controler;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 
 
 public class Main extends Application {
@@ -12,8 +13,14 @@ public class Main extends Application {
 	{
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root,400,400);
-	 
-		 System.out.println("ok");
+		
+		Text	text = new Text("Bibliotheque");
+		
+		text.setLayoutX(0);
+		text.setLayoutY(0);
+		text.resize(100, 100);
+		
+		root.getChildren().add(text);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
