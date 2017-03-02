@@ -9,6 +9,11 @@ public class Personne
 	private Date	dateNaissance;
 	private String	sexe;
 	
-	
-	
+	public Personne(String nom, String prenom, Date dateNaissance, String sexe) 
+	{
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.sexe = sexe;
+	}
 }
