@@ -1,5 +1,6 @@
 package Biblio.Controler;
 	
+import Biblio.View.MenueBibliothecaire;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -14,13 +15,10 @@ public class Main extends Application {
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root,400,400);
 		
-		Text	text = new Text("Bibliotheque");
-		System.out.println("hello cul");
-		text.setLayoutX(0);
-		text.setLayoutY(0);
-		text.resize(100, 100);
+		MenueBibliothecaire  mb = new MenueBibliothecaire();
 		
-		root.getChildren().add(text);
+		root.getChildren().add(mb);
+		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
