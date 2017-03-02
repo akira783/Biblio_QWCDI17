@@ -15,7 +15,7 @@ public class Main extends Application {
 		Scene scene = new Scene(root,400,400);
 		
 		Text	text = new Text("Bibliotheque");
-		
+		System.out.println("hello cul");
 		text.setLayoutX(0);
 		text.setLayoutY(0);
 		text.resize(100, 100);
