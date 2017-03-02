@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Utilisateur extends Personne
 {
-	private int	idUtilisateur;
+	private int		idUtilisateur;
 	private	String	pwd;
 	private	String	pseudonyme;
 	
@@ -14,6 +14,30 @@ public class Utilisateur extends Personne
 		super(nom, prenom, dateNaissance, sexe);
 		this.idUtilisateur = idUtilisateur;
 		this.pwd = pwd;
+		this.pseudonyme = pseudonyme;
+	}
+
+	public int getIdUtilisateur() {
+		return idUtilisateur;
+	}
+
+	public void setIdUtilisateur(int idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getPseudonyme() {
+		return pseudonyme;
+	}
+
+	public void setPseudonyme(String pseudonyme) {
 		this.pseudonyme = pseudonyme;
 	}
 }
