@@ -13,7 +13,7 @@ public class Main extends Application {
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root,400,400);
 	 
-		 System.out.println("def");
+		 System.out.println("ok");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
