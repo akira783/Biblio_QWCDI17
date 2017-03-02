@@ -12,7 +12,7 @@ public class Main extends Application {
 	{
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root,400,400);
-	
+	 
 		 
 		primaryStage.setScene(scene);
 		primaryStage.show();
