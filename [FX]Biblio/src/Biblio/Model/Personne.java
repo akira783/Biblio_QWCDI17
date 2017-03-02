@@ -1,4 +1,4 @@
-package Biblio.Controler;
+package Biblio.Model;
 
 import java.util.Date;
 
