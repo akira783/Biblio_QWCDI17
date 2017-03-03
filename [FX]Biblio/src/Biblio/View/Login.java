@@ -1,6 +1,7 @@
 package Biblio.View;
 
 import Biblio.Controler.Main;
+import Biblio.Controler.MenuBibliothecaire;
 import Biblio.JDBC.SQLQuery;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -72,14 +73,8 @@ public class Login extends Application {
 	            	 boolean ack = f.checkLog(userTextField.getText(), pwBox.getText());
 	            	 if(ack){
 
-	                     Stage stage = new Stage();
-	                     BorderPane bp = new BorderPane();
-	                     Scene scene = new Scene(bp, 400,400);
-	                     scene.getStylesheets().add("button.css");
-	                     stage.setScene(scene);
-	                     MenueBibliothecaire mb = new MenueBibliothecaire(stage);
-	                     bp.getChildren().add(mb);
-	                     stage.show();
+	                     MenuBibliothecaire mb = new MenuBibliothecaire();
+	                     
 	                     primaryStage.close();
 	            	 }
 	            	 
