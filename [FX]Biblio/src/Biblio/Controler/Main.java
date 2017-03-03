@@ -16,16 +16,12 @@ public class Main extends Application {
 		Scene scene = new Scene(root,400,400);
 		
 		MenueBibliothecaire  mb = new MenueBibliothecaire(primaryStage);
-		
-		root.getChildren().add(mb);
-		
-		scene.getStylesheets().add("button.css");
 
+		Login l = new Login();
 		
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
-	
+		l.start(primaryStage);
+		
+	}	
 	public static void main(String[] args) {
 		launch(args);
 	}
