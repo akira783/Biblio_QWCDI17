@@ -71,8 +71,7 @@ public class Login extends Application {
 	            	 SQLQuery f = new SQLQuery();
 	            	 boolean ack = f.checkLog(userTextField.getText(), pwBox.getText());
 	            	 if(ack){
-	            		 actiontarget.setFill(Color.LIMEGREEN);
-	                     actiontarget.setText("Connection Acceptée :)");
+
 	                     Stage stage = new Stage();
 	                     BorderPane bp = new BorderPane();
 	                     Scene scene = new Scene(bp, 400,400);
