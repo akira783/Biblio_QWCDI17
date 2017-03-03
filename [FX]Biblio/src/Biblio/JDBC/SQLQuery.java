@@ -7,8 +7,8 @@ import java.sql.Statement;
 
 public class SQLQuery {
 
-	static Connection conn = JDBC.Connect();;
-	String nomUtilisateur, pwd;
+	private static Connection conn = JDBC.Connect();;
+	private String nomUtilisateur, pwd;
 	 
 	
 	 

@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -72,7 +73,15 @@ public class Login extends Application {
 	            	 if(ack){
 	            		 actiontarget.setFill(Color.LIMEGREEN);
 	                     actiontarget.setText("Connection Acceptée :)");
-	                     
+	                     Stage stage = new Stage();
+	                     BorderPane bp = new BorderPane();
+	                     Scene scene = new Scene(bp, 400,400);
+	                     scene.getStylesheets().add("button.css");
+	                     stage.setScene(scene);
+	                     MenueBibliothecaire mb = new MenueBibliothecaire(stage);
+	                     bp.getChildren().add(mb);
+	                     stage.show();
+	                     primaryStage.close();
 	            	 }
 	            	 
 	            	 else{
