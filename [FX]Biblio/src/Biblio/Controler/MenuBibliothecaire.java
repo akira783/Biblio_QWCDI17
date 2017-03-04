@@ -12,7 +12,7 @@ public class MenuBibliothecaire
 {
 	private Stage stage = new Stage();
 	private Group root = new Group();
-	private Scene scene = new Scene(root, 300, 240);
+	private Scene scene = new Scene(root, 400, 400);
 	private FenMenuBibliothecaire fenEmprunt = new FenMenuBibliothecaire();
 	
 	public MenuBibliothecaire()
@@ -36,16 +36,16 @@ public class MenuBibliothecaire
 			}
 		});
 		
-		fenEmprunt.getbRetour().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		fenEmprunt.getbRetour().getbutton().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("faire la classe controller pour le retour");
+				EnregistrerUnRetour retour = new EnregistrerUnRetour();
 				
 			}
 		});
 		
-		fenEmprunt.getbGereEmprunt().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		fenEmprunt.getbGereEmprunt().getbutton().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {

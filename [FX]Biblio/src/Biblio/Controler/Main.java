@@ -17,13 +17,12 @@ public class Main extends Application {
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root,400,400);
 		
-		FenMenuBibliothecaire  mb = new FenMenuBibliothecaire();
+		MenuBibliothecaire  mb = new MenuBibliothecaire();
 
 		
-		root.getChildren().add(mb);
+		//root.getChildren().add(mb);
 		
-		primaryStage.setScene(scene);
-		primaryStage.show();
+	
 	//	Login l = new Login();
 		
 //		l.start(primaryStage);
