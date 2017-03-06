@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 
 public class FenGereEmprunt extends Parent 
 {
-	ListView list = new ListView<EmpruntEnCours>();
+	ListView<EmpruntEnCours> list = new ListView<EmpruntEnCours>();
 	private Text		titre = new Text("Gere les Emprunts");
 	
 	public  FenGereEmprunt()

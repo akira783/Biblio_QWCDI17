@@ -1,16 +1,9 @@
 package Biblio.View;
 
-import Biblio.Controler.EnregistrerUnEmprunt;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class FenMenuBibliothecaire extends Parent 
 {
