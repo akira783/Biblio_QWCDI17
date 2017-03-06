@@ -17,6 +17,7 @@ public class FenGereEmprunt extends Parent
 		titre.setLayoutX(110);
 		titre.setLayoutY(40);
 		
+		
 		list.setPrefSize(380, 330);
 		list.setLayoutX(10);
 		list.setLayoutY(60);
