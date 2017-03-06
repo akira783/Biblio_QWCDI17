@@ -47,18 +47,7 @@ public class EnregistrerUnEmprunt
 
 			@Override
 			public void handle(MouseEvent event) {
-				String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());								
-				System.out.println(timeStamp);				
-				String idLivre = fenEmprunt.getLivre().getText();
-				String idAdherent = fenEmprunt.getAdherant().getText();
-				System.out.println(idLivre);
-				System.out.println(idAdherent);
-				System.out.println(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
-				if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
-					sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
-					sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
-				}
-				else System.out.println("Livre INDISPONIBLE");
+				enregistrer();
 			}
 		});
 		
@@ -69,25 +58,32 @@ public class EnregistrerUnEmprunt
 			{
 				if (event.getCode().equals(KeyCode.ENTER))
 				{
-					String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());								
-					System.out.println(timeStamp);				
-					String idLivre = fenEmprunt.getLivre().getText();
-					String idAdherent = fenEmprunt.getAdherant().getText();
-					System.out.println(idLivre);
-					System.out.println(idAdherent);
-					System.out.println(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
-					
-					sqlq.getNbEmprunt(Integer.parseInt(idAdherent));
-					
-					
-					if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
-						sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
-						sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
-					}
-					else System.out.println("Livre INDISPONIBLE");
+					enregistrer();
 				
 				}
 			}
+			
 		});
 	}
+	public void enregistrer(){
+		
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());								
+		System.out.println(timeStamp);				
+		String idLivre = fenEmprunt.getLivre().getText();
+		String idAdherent = fenEmprunt.getAdherant().getText();
+		System.out.println(idLivre);
+		System.out.println(idAdherent);
+		System.out.println(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
+		
+		sqlq.getNbEmprunt(Integer.parseInt(idAdherent));
+		
+		if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))<3)
+		if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
+			sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
+			sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
+		}
+		else if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))==3) System.out.println("L'utilisateur a trop de livre !");
+		
+		else System.out.println("Livre INDISPONIBLE");
+}
 }
