@@ -43,7 +43,6 @@ public class FenEnregistrerUnEmprunt extends Parent
 		grid.add(livre, 1, 2);
 		grid.add(date, 1, 3);
 		
-		
 		this.getChildren().add(bAnnuler);
 		this.getChildren().add(bEnregistrer);
 		this.getChildren().add(titre);

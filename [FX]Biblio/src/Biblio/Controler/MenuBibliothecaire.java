@@ -49,7 +49,7 @@ public class MenuBibliothecaire
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("faire la classe controller pour gere les emprunt");
+				GereEmprunt emprunt = new GereEmprunt();
 				
 			}
 		});
