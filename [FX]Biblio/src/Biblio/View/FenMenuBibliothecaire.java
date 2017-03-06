@@ -10,6 +10,7 @@ public class FenMenuBibliothecaire extends Parent
 	BoutonMenue bEmprunter = new BoutonMenue("Enregistrer un Emprunt");
 	BoutonMenue bRetour = new BoutonMenue("Enregistrer un retour");
 	BoutonMenue bGereEmprunt = new BoutonMenue("Gérè les emprunt");
+	BoutonMenue bQuit = new BoutonMenue("Quitter");
 	GridPane grid = new GridPane();
 	Text titre = new Text("             Menu");
 
@@ -21,9 +22,10 @@ public class FenMenuBibliothecaire extends Parent
 		grid.add(bEmprunter, 0, 1);
 		grid.add(bRetour, 0, 2);
 		grid.add(bGereEmprunt, 0, 3);
-		grid.setVgap(30);
+		grid.add(bQuit, 0, 4);
+		grid.setVgap(25);
 		grid.setLayoutX(50);
-		grid.setLayoutY(60);
+		grid.setLayoutY(30);
 
 		this.getChildren().add(grid);
 	}
@@ -67,4 +69,14 @@ public class FenMenuBibliothecaire extends Parent
 	public void setTitre(Text titre) {
 		this.titre = titre;
 	}
+
+	public BoutonMenue getbQuit() {
+		return bQuit;
+	}
+
+	public void setbQuit(BoutonMenue bQuit) {
+		this.bQuit = bQuit;
+	}
+	
+	
 }
