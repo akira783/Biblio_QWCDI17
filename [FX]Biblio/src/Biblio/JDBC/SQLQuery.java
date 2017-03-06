@@ -160,4 +160,32 @@ public  void setStatusExemplaire(int i, int idExemplaire){
 			e.printStackTrace();
 		}
 	}
+
+	public int getNbEmprunt(int idUtilisateur){
+		
+			int i = 0;
+			Statement st;
+			try {				
+				st = conn.createStatement();			
+				ResultSet resultat = st.executeQuery("SELECT idUtilisateur FROM empruntencours WHERE idUtilisateur = "+idUtilisateur+"");
+				System.out.println("Requete getNbEmprunt : OK");
+				while(resultat.next())
+					{	
+					if (resultat.equals(idUtilisateur)){
+					String id = resultat.getString( "idUtilisateur" );
+					i++;					
+					}
+					}
+			System.out.println("L'utilisateur : "+ idUtilisateur +" à emprunté "+i+ " livre(s)");
+		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return i;
+			
+		
+		
+		
+	}
 }
