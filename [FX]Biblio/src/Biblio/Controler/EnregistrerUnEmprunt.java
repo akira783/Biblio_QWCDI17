@@ -4,6 +4,8 @@ import Biblio.View.FenEnregistrerUnEmprunt;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -38,6 +40,18 @@ public class EnregistrerUnEmprunt
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println("Enregistrer les infos de l'emprunt dans la bibliotheque");
+			}
+		});
+		
+		fenEmprunt.getLivre().setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) 
+			{
+				if (event.getCode().equals(KeyCode.ENTER))
+				{
+					
+				}
 			}
 		});
 	}

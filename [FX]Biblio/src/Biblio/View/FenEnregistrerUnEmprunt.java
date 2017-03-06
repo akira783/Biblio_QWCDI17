@@ -38,7 +38,6 @@ public class FenEnregistrerUnEmprunt extends Parent
 		
 		grid.add(new Text("ID Adherant"), 0, 1);
 		grid.add(new Text("ID Livre"), 0, 2);
-		grid.add(new Text("Date de retour"), 0, 3);
 		grid.add(adherant, 1, 1);
 		grid.add(livre, 1, 2);
 		grid.add(date, 1, 3);
