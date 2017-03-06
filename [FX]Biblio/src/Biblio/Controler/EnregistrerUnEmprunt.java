@@ -76,6 +76,10 @@ public class EnregistrerUnEmprunt
 					System.out.println(idLivre);
 					System.out.println(idAdherent);
 					System.out.println(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
+					
+					sqlq.getNbEmprunt(Integer.parseInt(idAdherent));
+					
+					
 					if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
 						sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
 						sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
