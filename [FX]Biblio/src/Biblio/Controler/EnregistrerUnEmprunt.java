@@ -1,5 +1,12 @@
 package Biblio.Controler;
 
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import Biblio.JDBC.SQLQuery;
 import Biblio.View.FenEnregistrerUnEmprunt;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -13,6 +20,7 @@ public class EnregistrerUnEmprunt
 	private Group root = new Group();
 	private Scene scene = new Scene(root, 300, 240);
 	private FenEnregistrerUnEmprunt fenEmprunt = new FenEnregistrerUnEmprunt();
+	private SQLQuery sqlq = new SQLQuery();
 	
 	public EnregistrerUnEmprunt()
 	{
@@ -37,7 +45,16 @@ public class EnregistrerUnEmprunt
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Enregistrer les infos de l'emprunt dans la bibliotheque");
+				
+				String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+				
+				
+				System.out.println(timeStamp);
+				String idLivre = fenEmprunt.getLivre().getText();
+				String idAdherent = fenEmprunt.getAdherant().getText();
+				sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
+				
+				
 			}
 		});
 	}
