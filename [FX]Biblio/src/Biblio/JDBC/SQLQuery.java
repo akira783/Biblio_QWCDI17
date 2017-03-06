@@ -8,7 +8,8 @@ import java.sql.Statement;
 
 public class SQLQuery {
 
-	private  Connection conn = JDBC.Connect();;
+
+	private  Connection conn = JDBC.Connect();;	
 	private String nomUtilisateur, pwd;
 	 
 	
@@ -29,8 +30,8 @@ public class SQLQuery {
 	             	           
 				 if(id.equals(idUtil)){
 					 System.out.println("Trouvé !");
-				 nomUtilisateur = resultat.getString("idUtilisateur");
-				 this.pwd=resultat.getString("pwd");	 				 
+					 nomUtilisateur = resultat.getString("idUtilisateur");
+					 this.pwd=resultat.getString("pwd");	 				 
 				 }				 
 			 }			 
 			 if(nomUtilisateur==null) System.out.println("Cette utilisateur n'éxiste pas");
