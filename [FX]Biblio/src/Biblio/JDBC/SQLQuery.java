@@ -74,7 +74,7 @@ public class SQLQuery {
 		 
 		 try {
 			Statement st = conn.createStatement();
-			st.executeUpdate("INSERT INTO empruntencours (dateEmprunt,idUtilisateur,idExemplaire) VALUES ('"+pickUpDate+"',"+idUtilisateur+","+idExemplaire+";");
+			st.executeUpdate("INSERT INTO biblio.empruntencours (dateEmprunt,idUtilisateur,idExemplaire) VALUES ('"+pickUpDate+"',"+idUtilisateur+","+idExemplaire+");");
 			
 		
 			

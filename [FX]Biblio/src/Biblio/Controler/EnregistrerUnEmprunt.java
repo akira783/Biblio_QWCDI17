@@ -52,8 +52,11 @@ public class EnregistrerUnEmprunt
 				
 				
 				System.out.println(timeStamp);
+				
 				String idLivre = fenEmprunt.getLivre().getText();
 				String idAdherent = fenEmprunt.getAdherant().getText();
+				System.out.println(idLivre);
+				System.out.println(idAdherent);
 				sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
 				
 				
