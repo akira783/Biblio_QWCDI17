@@ -47,11 +47,6 @@ public class EnregistrerUnEmprunt
 
 			@Override
 			public void handle(MouseEvent event) {
-				
-				
-				
-				
-				
 				String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());								
 				System.out.println(timeStamp);				
 				String idLivre = fenEmprunt.getLivre().getText();
@@ -64,8 +59,6 @@ public class EnregistrerUnEmprunt
 					sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
 				}
 				else System.out.println("Livre INDISPONIBLE");
-				
-				
 			}
 		});
 		
@@ -76,7 +69,19 @@ public class EnregistrerUnEmprunt
 			{
 				if (event.getCode().equals(KeyCode.ENTER))
 				{
-					
+					String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());								
+					System.out.println(timeStamp);				
+					String idLivre = fenEmprunt.getLivre().getText();
+					String idAdherent = fenEmprunt.getAdherant().getText();
+					System.out.println(idLivre);
+					System.out.println(idAdherent);
+					System.out.println(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
+					if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
+						sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
+						sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
+					}
+					else System.out.println("Livre INDISPONIBLE");
+				
 				}
 			}
 		});

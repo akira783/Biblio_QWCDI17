@@ -26,19 +26,14 @@ public class JDBC {
             conn =
                DriverManager.getConnection("jdbc:mysql://192.168.101.130:3306/biblio",
                                            "user","pwd");
-            
             System.out.println("Connexion réussie !");
-            
             return conn;
-            
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
-           
-
 		return conn;
-}
+    }
 }

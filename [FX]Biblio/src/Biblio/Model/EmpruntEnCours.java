@@ -1,15 +1,13 @@
 package Biblio.Model;
 
-import java.util.Date;
-
 public class EmpruntEnCours 
 {
 	private int		idEmprunt;
-	private Date	DateEmprunt;
+	private String	DateEmprunt;
 	private int		idUtilisateur;
 	private int 	idExemplaire;
 	
-	public EmpruntEnCours(int idEmprunt, Date dateEmprunt, int idUtilisateur, int idExemplaire) 
+	public EmpruntEnCours(int idEmprunt, String dateEmprunt, int idUtilisateur, int idExemplaire) 
 	{
 		this.idEmprunt = idEmprunt;
 		DateEmprunt = dateEmprunt;
@@ -25,11 +23,11 @@ public class EmpruntEnCours
 		this.idEmprunt = idEmprunt;
 	}
 
-	public Date getDateEmprunt() {
+	public String getDateEmprunt() {
 		return DateEmprunt;
 	}
 
-	public void setDateEmprunt(Date dateEmprunt) {
+	public void setDateEmprunt(String dateEmprunt) {
 		DateEmprunt = dateEmprunt;
 	}
 
@@ -49,4 +47,9 @@ public class EmpruntEnCours
 		this.idExemplaire = idExemplaire;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "IdAdherant = " + idUtilisateur + "\tIdLivre = " + idExemplaire + "\t date = " + DateEmprunt;
+	}
 }
