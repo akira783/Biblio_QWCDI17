@@ -72,6 +72,8 @@ public class SQLQuery {
 	 
 	 public void setEmpruntEnCours(String pickUpDate ,String idUtilisateur ,String idExemplaire){
 		 
+		 checkStatusExemplaire(Integer.parseInt(idExemplaire));
+		 
 		 try {
 			Statement st = conn.createStatement();
 			st.executeUpdate("INSERT INTO biblio.empruntencours (dateEmprunt,idUtilisateur,idExemplaire) VALUES ('"+pickUpDate+"',"+idUtilisateur+","+idExemplaire+");");
@@ -85,4 +87,59 @@ public class SQLQuery {
 	 
 	 }
 
+	 
+	 public  String checkStatusExemplaire(int idExemplaire){
+		 
+		 
+		 try {
+				Statement st = conn.createStatement();
+				ResultSet resultat = st.executeQuery("SELECT status FROM exemplaire WHERE idExemplaire = '"+idExemplaire+"'");
+				while (resultat.next()){
+				String status = resultat.getString("status");
+				return status;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return null;
+		 
+		 
+		 
+		 
+		 
+	 }
+	 
+public  void setStatusExemplaire(int i, int idExemplaire){
+		String status = null;
+	
+		 if(i==1) {
+			  status = "DISPONIBLE";
+					 }
+		 
+		 if(i==0){
+			  status = "PRETE";
+		 }
+		 
+		 if(i== -1){
+			 status = "SUPPRIME";
+		 }
+		 
+		 
+		 try {
+				Statement st = conn.createStatement();
+				st.executeUpdate("UPDATE exemplaire SET status = '"+status+"' WHERE idExemplaire = "+idExemplaire+";");
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 
+		 
+		 
+		 
+		 
+	 }
+	 
 }
