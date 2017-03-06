@@ -51,59 +51,31 @@ public class FenEnregistrerUnEmprunt extends Parent
 
 	public Button getbEnregistrer() {
 		return bEnregistrer;
-	}
-
-	public void setbEnregistrer(Button bEnregistrer) {
-		this.bEnregistrer = bEnregistrer;
-	}
+	}	
 
 	public Button getbAnnuler() {
 		return bAnnuler;
-	}
-
-	public void setbAnnuler(Button bAnnuler) {
-		this.bAnnuler = bAnnuler;
-	}
+	}	
 
 	public GridPane getGrid() {
 		return grid;
 	}
-
-	public void setGrid(GridPane grid) {
-		this.grid = grid;
-	}
-
+	
 	public Text getTitre() {
 		return titre;
 	}
-
-	public void setTitre(Text titre) {
-		this.titre = titre;
-	}
-
+	
 	public TextField getAdherant() {
 		return adherant;
-	}
-
-	public void setAdherant(TextField adherant) {
-		this.adherant = adherant;
 	}
 
 	public TextField getLivre() {
 		return livre;
 	}
 
-	public void setLivre(TextField livre) {
-		this.livre = livre;
-	}
-
 	public DatePicker getDate() {
+		
 		return date;
 	}
-
-	public void setDate(DatePicker date) {
-		this.date = date;
-	}
-	
-	
+		
 }

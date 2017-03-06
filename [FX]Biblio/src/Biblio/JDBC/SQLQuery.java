@@ -1,13 +1,14 @@
 package Biblio.JDBC;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLQuery {
 
-	private static Connection conn = JDBC.Connect();;
+	private  Connection conn = JDBC.Connect();;
 	private String nomUtilisateur, pwd;
 	 
 	
@@ -44,7 +45,7 @@ public class SQLQuery {
 			 else System.out.println("Connection : REFUSÉE");	
 			 return false;
 			 
-		 
+			 
 			
 		 } 
 			 
@@ -56,8 +57,31 @@ public class SQLQuery {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 finally {
+			 try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
 		return false;
 		 
 }
+	 
+	 public void setEmpruntEnCours(String pickUpDate ,String idUtilisateur ,String idExemplaire){
+		 
+		 try {
+			Statement st = conn.createStatement();
+			st.executeUpdate("INSERT INTO empruntencours (dateEmprunt,idUtilisateur,idExemplaire) VALUES ('"+pickUpDate+"',"+idUtilisateur+","+idExemplaire+";");
+			
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 
+	 }
 
 }
