@@ -1,10 +1,7 @@
 package Biblio.Controler;
 
-import Biblio.View.FenEnregistrerUnEmprunt;
 import Biblio.View.FenMenuBibliothecaire;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -16,7 +13,7 @@ public class MenuBibliothecaire
 {
 	private Stage stage = new Stage();
 	private Group root = new Group();
-	private Scene scene = new Scene(root, 400, 400);
+	private Scene scene = new Scene(root, 400, 500);
 	private FenMenuBibliothecaire fenEmprunt = new FenMenuBibliothecaire();
 	
 	public MenuBibliothecaire()
@@ -31,7 +28,7 @@ public class MenuBibliothecaire
 	
 	public void gestionClickButton()
 	{
-		fenEmprunt.getbEmprunter().getbutton().setOnMouseClicked(new EventHandler<MouseEvent>() 
+		fenEmprunt.getbEmprunter().getbutton().setOnMousePressed(new EventHandler<MouseEvent>()
 		{
 
 			@Override
@@ -62,6 +59,14 @@ public class MenuBibliothecaire
 			@Override
 			public void handle(MouseEvent event) {
 					stage.close();
+			}
+		});
+		
+		fenEmprunt.getbExemplaire().getbutton().setOnMousePressed(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				ConsulterExemplaire consExemplaire = new ConsulterExemplaire();
 			}
 		});
 	}
@@ -113,6 +118,18 @@ public class MenuBibliothecaire
 				if (event.getCode().equals(KeyCode.ENTER))
 				{
 				stage.close();
+				}
+			}
+		});
+
+		fenEmprunt.getbExemplaire().setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) 
+			{
+				if (event.getCode().equals(KeyCode.ENTER))
+				{
+					ConsulterExemplaire consExemplaire = new ConsulterExemplaire();
 				}
 			}
 		});

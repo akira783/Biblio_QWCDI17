@@ -4,8 +4,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import Biblio.Model.EmpruntArchive;
 import Biblio.Model.EmpruntEnCours;
+import Biblio.Model.EnumStatusExemplaire;
+import Biblio.Model.Exemplaire;
+import Biblio.View.FenConsulterExemplaire;
+import Biblio.View.FenEnregistrerUnRetour;
 import Biblio.View.FenGereEmprunt;
 import javafx.collections.ObservableList;
 
@@ -138,28 +145,6 @@ public  void setStatusExemplaire(int i, int idExemplaire){
 		 
 	 }
 
-	public void gereEmpruntSql(ObservableList<EmpruntEnCours> listEmprunt, FenGereEmprunt emprunt)
-	{
-		Statement st;
-		try {
-			st = conn.createStatement();
-			ResultSet result = st.executeQuery("SELECT * FROM biblio.empruntencours;");
-			
-			while (result.next())
-			{
-				System.out.println("idutilisateur = " + result.getString("idUtilisateur") + "\nid exemplaire" + result.getString("idExemplaire"));
-				listEmprunt.add(new EmpruntEnCours(	Integer.parseInt(result.getString("idEmprunt")), 
-													result.getString("dateEmprunt"), 
-													Integer.parseInt(result.getString("idUtilisateur")), 
-													Integer.parseInt(result.getString("idExemplaire"))));
-			}
-			emprunt.getList().setItems(listEmprunt);
-				
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	public int getNbEmprunt(int idUtilisateur){
 		
@@ -201,6 +186,88 @@ public  void setStatusExemplaire(int i, int idExemplaire){
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void EnregistrerUnRetour(FenEnregistrerUnRetour retour)
+	{
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());								
+		
+		
+			Statement st;
+			ResultSet result;
+			String idemprunt = "";
+			
+			try {
+				EmpruntArchive empruntArchive = new EmpruntArchive();
+				st = conn.createStatement();
+				result = st.executeQuery("SELECT * FROM empruntencours WHERE idUtilisateur = "+ Integer.parseInt(retour.getAdherant().getText()) +" AND idExemplaire = "+ Integer.parseInt(retour.getLivre().getText())+";");
+				while(result.next())
+					{
+							empruntArchive = new EmpruntArchive(timeStamp, result.getString("dateEmprunt"), Integer.parseInt(result.getString("idExemplaire")), Integer.parseInt(result.getString("idUtilisateur")));
+							idemprunt = result.getString("idEmprunt");
+					}
+				st.executeUpdate("insert into biblio.empruntarchive (dateEmprunt, dateRestitutionEff, idExemplaire, idUtilisateur)"+ 
+								"VALUES ('" + empruntArchive.getDateEmprunt() + "'," +
+								"'" + empruntArchive.getDateRestitutionEff() +
+								"', " + empruntArchive.getIdExemplaire() +
+								", " + empruntArchive.getIdUtlisateur()+ ");");
+				st.executeUpdate("UPDATE exemplaire SET status = 'DISPONIBLE' where idExemplaire = " + empruntArchive.getIdExemplaire() + ";");
+				st.executeUpdate("DELETE FROM empruntencours where idEmprunt = " + idemprunt + ";");
+				
+	
+			} catch (SQLException e) {
+				
+			}
+		
+	}
+
+	public void gereEmpruntSql(ObservableList<EmpruntEnCours> listEmprunt, FenGereEmprunt emprunt)
+	{
+		Statement st;
+		try {
+			st = conn.createStatement();
+			ResultSet result = st.executeQuery("SELECT * FROM biblio.empruntencours;");
+			
+			while (result.next())
+			{
+				System.out.println("idutilisateur = " + result.getString("idUtilisateur") + "\nid exemplaire" + result.getString("idExemplaire"));
+				listEmprunt.add(new EmpruntEnCours(	Integer.parseInt(result.getString("idEmprunt")), 
+													result.getString("dateEmprunt"), 
+													Integer.parseInt(result.getString("idUtilisateur")), 
+													Integer.parseInt(result.getString("idExemplaire"))));
+			}
+			emprunt.getList().setItems(listEmprunt);
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void listerExemplaire(ObservableList<Exemplaire> listLivre, FenConsulterExemplaire livre)
+	{
+		try {
+			Statement st = conn.createStatement();
+			ResultSet result = st.executeQuery("SELECT * FROM biblio.Exemplaire;");
+			while (result.next())
+			listLivre.add(new Exemplaire(Integer.parseInt(result.getString("idExemplaire")), 
+										result.getString("dateAchat"), 
+										result.getString("isbn"), 
+										findnumm(result.getString("status"))));
+			livre.getList().setItems(listLivre);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public EnumStatusExemplaire findnumm(String enumm)
+	{
+		if (enumm.equals("DISPONIBLE"))
+			return EnumStatusExemplaire.DISPONIBLE;
+		else if (enumm.equals("PRETE"))
+			return EnumStatusExemplaire.PRETE;
+		else
+			return EnumStatusExemplaire.SUPPRIME;
 	}
 	
 }

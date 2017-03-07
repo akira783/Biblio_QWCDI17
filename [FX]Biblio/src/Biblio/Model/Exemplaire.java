@@ -5,11 +5,11 @@ import java.util.Date;
 public class Exemplaire 
 {
 	private int		idExemplaire;
-	private	Date	dateAchat;
+	private	String	dateAchat;
 	private	String	isbn;
 	private EnumStatusExemplaire status;
 	
-	public Exemplaire(int idExemplaire, Date dateAchat, String isbn, EnumStatusExemplaire status) 
+	public Exemplaire(int idExemplaire, String dateAchat, String isbn, EnumStatusExemplaire status) 
 	{
 		this.idExemplaire = idExemplaire;
 		this.dateAchat = dateAchat;
@@ -25,11 +25,11 @@ public class Exemplaire
 		this.idExemplaire = idExemplaire;
 	}
 
-	public Date getDateAchat() {
+	public String getDateAchat() {
 		return dateAchat;
 	}
 
-	public void setDateAchat(Date dateAchat) {
+	public void setDateAchat(String dateAchat) {
 		this.dateAchat = dateAchat;
 	}
 
@@ -47,5 +47,11 @@ public class Exemplaire
 
 	public void setStatus(EnumStatusExemplaire status) {
 		this.status = status;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "idExemplaire = " + idExemplaire + " dateAchat = " + dateAchat + " \nstatus = " + status.name() + " isbn = " + isbn;
 	}
 }
