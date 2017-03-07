@@ -11,11 +11,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+
+
 public class Login 
 {
 	Stage stage = new Stage();
 	Group root = new Group();
 	Scene scene = new Scene(root, 300, 275);
+	SQLQuery sqlq = new SQLQuery();
 	
 	public Login()
 	{
@@ -28,6 +31,7 @@ public class Login
            	 boolean ack = f.checkLog(login.getUserTextField().getText(), login.getPwBox().getText());
            	 if(ack){
                     MenuBibliothecaire mb = new MenuBibliothecaire();
+                    sqlq.setDispoAll();
                     stage.close();
            	 	}
            	 else{
@@ -47,6 +51,7 @@ public class Login
 		           	 boolean ack = f.checkLog(login.getUserTextField().getText(), login.getPwBox().getText());
 		           	 if(ack){
 		                    MenuBibliothecaire mb = new MenuBibliothecaire();
+		                    sqlq.setDispoAll();
 		                    stage.close();
 		           	 	}
 		           	 else{

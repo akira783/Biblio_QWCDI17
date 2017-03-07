@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -16,7 +17,7 @@ public class FenEnregistrerUnEmprunt extends Parent
 	private Text		titre = new Text("Enregistrer un emprunt");
 	private TextField	adherant = new TextField(); 
 	private TextField	livre = new TextField();
-	private DatePicker	date = new DatePicker();
+	private Text	confirm = new Text();
 	
 	public FenEnregistrerUnEmprunt()
 	{
@@ -40,7 +41,7 @@ public class FenEnregistrerUnEmprunt extends Parent
 		grid.add(new Text("ID Livre"), 0, 2);
 		grid.add(adherant, 1, 1);
 		grid.add(livre, 1, 2);
-		grid.add(date, 1, 3);
+		grid.add(confirm, 1, 3);
 		
 		this.getChildren().add(bAnnuler);
 		this.getChildren().add(bEnregistrer);
@@ -72,9 +73,18 @@ public class FenEnregistrerUnEmprunt extends Parent
 		return livre;
 	}
 
-	public DatePicker getDate() {
-		
-		return date;
+	public void setConfirm(String msg) {
+		System.out.println(msg);
+		if (msg.equals("ok")){
+		confirm.setFill(Color.GREEN);
+		confirm.setText("Enregistrement effectué");
+		}
+		else {
+			
+			confirm.setFill(Color.RED);
+			confirm.setText("Erreur lors de l'enregistrement");
+			
+		}
 	}
 		
 }

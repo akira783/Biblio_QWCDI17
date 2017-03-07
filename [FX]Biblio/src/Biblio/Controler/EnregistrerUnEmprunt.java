@@ -68,22 +68,30 @@ public class EnregistrerUnEmprunt
 	public void enregistrer(){
 		
 		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());								
-		System.out.println(timeStamp);				
+						
 		String idLivre = fenEmprunt.getLivre().getText();
 		String idAdherent = fenEmprunt.getAdherant().getText();
-		System.out.println(idLivre);
-		System.out.println(idAdherent);
-		System.out.println(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
+		System.out.println("idLivre : " + idLivre);
+		System.out.println("idAdhérent : " + idAdherent);
+		System.out.println("Statut du livre : "+sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
 		
-		sqlq.getNbEmprunt(Integer.parseInt(idAdherent));
+		System.out.println(sqlq.getNbEmprunt(Integer.parseInt(idAdherent)));
 		
 		if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))<3)
 		if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
-			sqlq.setEmpruntEnCours(timeStamp, idLivre, idAdherent);
+			sqlq.setEmpruntEnCours(timeStamp,idAdherent,idLivre);
 			sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
+			fenEmprunt.setConfirm("ok");
 		}
-		else if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))==3) System.out.println("L'utilisateur a trop de livre !");
+		else if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))>=3){
+			fenEmprunt.setConfirm("ko");
+			System.out.println("L'utilisateur a trop de livre !");
+		}
 		
-		else System.out.println("Livre INDISPONIBLE");
+		else{
+			System.out.println("Livre INDISPONIBLE");
+			fenEmprunt.setConfirm("ko");
+		}
+		
 }
 }
