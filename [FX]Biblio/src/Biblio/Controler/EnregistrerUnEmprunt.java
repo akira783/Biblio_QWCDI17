@@ -88,9 +88,10 @@ public class EnregistrerUnEmprunt
 		System.out.println("Statut du livre : "+sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)));
 		
 		System.out.println(sqlq.getNbEmprunt(Integer.parseInt(idAdherent)));
-		
+		sqlq.isLate(Integer.parseInt(idAdherent));
 		if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))<3 && sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE"))
 		if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
+			
 			sqlq.setEmpruntEnCours(timeStamp,idAdherent,idLivre);
 			sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
 			fenEmprunt.setConfirm("ok");

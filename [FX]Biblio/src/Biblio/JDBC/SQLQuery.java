@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import Biblio.Model.EmpruntArchive;
@@ -268,6 +271,64 @@ public  void setStatusExemplaire(int i, int idExemplaire){
 			return EnumStatusExemplaire.PRETE;
 		else
 			return EnumStatusExemplaire.SUPPRIME;
+	}
+
+	public void getDateEmprunt(int idUtilisateur){
+		
+		try {
+			Statement st = conn.createStatement();
+			ResultSet result = st.executeQuery("SELECT dateEmprunt FROM biblio.empruntencours WHERE idUtilisateur = "+idUtilisateur+";");
+			while (result.next()){
+				
+				System.out.println(result.getString("dateEmprunt"));
+				
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		
+		
+	}
+public void isLate(int idUtilisateur) {
+		
+		try {
+			Statement st = conn.createStatement();
+			ResultSet result = st.executeQuery("SELECT dateEmprunt FROM biblio.empruntencours WHERE idUtilisateur = "+idUtilisateur+";");
+			Date today = Calendar.getInstance().getTime();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			System.out.println("nous sommes le : "+df.format(today));
+			while (result.next()){
+				
+				
+				String date = result.getString("dateEmprunt");
+				
+				Date res;
+				
+				try {
+					res = df.parse(date);
+					System.out.println(df.format(res));
+					
+					
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		
+		
 	}
 	
 }
