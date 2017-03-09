@@ -293,7 +293,7 @@ public  void setStatusExemplaire(int i, int idExemplaire){
 		
 		
 	}
-public  boolean isLate(int idUtilisateur)  {
+public void isLate(int idUtilisateur) {
 		
 		try {
 			Statement st = conn.createStatement();
@@ -302,23 +302,33 @@ public  boolean isLate(int idUtilisateur)  {
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			System.out.println("nous sommes le : "+df.format(today));
 			while (result.next()){
+				
+				
 				String date = result.getString("dateEmprunt");
-				Date res = new Date();
-				String format = df.format(res);
-				String[] parts = format.split("-");
-				res.setYear(Integer.parseInt(parts[0]));
-				res.setMonth(Integer.parseInt(parts[1]));
-				res.setDate(Integer.parseInt(parts[2]) + 15);
-				System.out.println("today = "+today);
-				System.out.println("res = "+res);
-				if (today.before(res))
-					return false;
-				else
-					return true;
+				
+				Date res;
+				
+				try {
+					res = df.parse(date);
+					System.out.println(df.format(res));
+					
+					
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+	
+		
+		
 	}
+	
 }
