@@ -89,7 +89,7 @@ public class EnregistrerUnEmprunt
 		
 		System.out.println(sqlq.getNbEmprunt(Integer.parseInt(idAdherent)));
 		
-		if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))<3)
+		if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))<3 && sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE"))
 		if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
 			sqlq.setEmpruntEnCours(timeStamp,idAdherent,idLivre);
 			sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
@@ -100,7 +100,7 @@ public class EnregistrerUnEmprunt
 			System.out.println("L'utilisateur a trop de livre !");
 		}
 		
-		else{
+		else {
 			System.out.println("Livre INDISPONIBLE");
 			fenEmprunt.setConfirm("ko");
 		}

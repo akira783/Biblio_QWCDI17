@@ -24,8 +24,8 @@ public class JDBC {
         try {
         	System.out.println("Connexion à la BDD...");
             conn =
-               DriverManager.getConnection("jdbc:mysql://192.168.101.130:3306/biblio",
-                                           "user","pwd");
+               DriverManager.getConnection("jdbc:mysql://192.168.101.132:3306/biblio",
+                                           "walou","pwd");
             System.out.println("Connexion réussie !");
             return conn;
         } catch (SQLException ex) {
