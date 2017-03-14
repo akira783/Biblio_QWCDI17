@@ -293,42 +293,75 @@ public  void setStatusExemplaire(int i, int idExemplaire){
 		
 		
 	}
-public void isLate(int idUtilisateur) {
+public boolean isLate(int idUtilisateur) {
 		
-		try {
-			Statement st = conn.createStatement();
-			ResultSet result = st.executeQuery("SELECT dateEmprunt FROM biblio.empruntencours WHERE idUtilisateur = "+idUtilisateur+";");
+		boolean bool = false;
+			Statement st;
+			try {
+				st = conn.createStatement();
+			
 			Date today = Calendar.getInstance().getTime();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			System.out.println("nous sommes le : "+df.format(today));
+			
+			ResultSet result = st.executeQuery("SELECT dateEmprunt,idExemplaire FROM biblio.empruntencours WHERE idUtilisateur = "+idUtilisateur+";");
+			
 			while (result.next()){
 				
 				
 				String date = result.getString("dateEmprunt");
-				
+				String ide= result.getString("idExemplaire");
 				Date res;
 				
 				try {
 					res = df.parse(date);
 					System.out.println(df.format(res));
-					
-					
-					
+					int t = dateDiff(today, res);
+					if (t>15){
+						bool = true;
+						System.out.println("Exemplaire n°"+ide+" en retard de "+t+" jours !");
+						
+					}
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
+			 
+			
 				
 			}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return bool;}
+		
+			public int dateDiff(Date debut, Date fin) {
+			
+			try {
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				Statement st = conn.createStatement();
+				ResultSet result2 = st.executeQuery("SELECT DATEDIFF('"+df.format(debut)+"', '"+df.format(fin)+"') AS datediff;");
+				while (result2.next()){
+					
+					return Integer.parseInt(result2.getString("datediff"));
+					
+				}
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return 0;
 			
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			
+		 
 	
 		
-		
+		}
 	}
 	
-}
+

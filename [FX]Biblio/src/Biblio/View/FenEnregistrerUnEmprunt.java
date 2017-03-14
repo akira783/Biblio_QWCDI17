@@ -73,17 +73,16 @@ public class FenEnregistrerUnEmprunt extends Parent
 		return livre;
 	}
 
-	public void setConfirm(String msg) {
+	public void setConfirm(String msg, int i) {
 		System.out.println(msg);
-		if (msg.equals("ok")){
+		if (i==1){
 		confirm.setFill(Color.GREEN);
-		confirm.setText("Enregistrement effectué");
+		confirm.setText(msg);
 		}
 		else {
 			
 			confirm.setFill(Color.RED);
-			confirm.setText("Erreur lors de l'enregistrement");
-			
+			confirm.setText(msg);
 		}
 	}
 		

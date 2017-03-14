@@ -31,7 +31,7 @@ public class Login
            	 boolean ack = f.checkLog(login.getUserTextField().getText(), login.getPwBox().getText());
            	 if(ack){
                     MenuBibliothecaire mb = new MenuBibliothecaire();
-                    sqlq.setDispoAll();
+                    //sqlq.setDispoAll();
                     stage.close();
            	 	}
            	 else{

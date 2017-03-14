@@ -89,22 +89,31 @@ public class EnregistrerUnEmprunt
 		
 		System.out.println(sqlq.getNbEmprunt(Integer.parseInt(idAdherent)));
 		System.out.println(sqlq.isLate(Integer.parseInt(idAdherent)));
-		if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))<3 && sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE"))
-		if(sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")){
-			
-			sqlq.setEmpruntEnCours(timeStamp,idAdherent,idLivre);
-			sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
-			fenEmprunt.setConfirm("ok");
-		}
-		else if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))>=3){
-			fenEmprunt.setConfirm("ko");
-			System.out.println("L'utilisateur a trop de livre !");
+		
+		
+		
+		
+		if(sqlq.isLate(Integer.parseInt(idAdherent))){			
+			System.out.println("L'utilisateur a un livre en retard !");	
+			fenEmprunt.setConfirm("L'utilisateur a un livre en retard !",0);
 		}
 		
-		else {
-			System.out.println("Livre INDISPONIBLE");
-			fenEmprunt.setConfirm("ko");
+		else if (sqlq.getNbEmprunt(Integer.parseInt(idAdherent))>=3){
+			fenEmprunt.setConfirm("L'utilisateur a trop de livre !",0);
+			System.out.println("L'utilisateur a déja emprunté 3 livres");
 		}
+	
+		else if(!sqlq.checkStatusExemplaire(Integer.parseInt(idLivre)).equals("DISPONIBLE")) {
+			System.out.println("Livre INDISPONIBLE");
+			fenEmprunt.setConfirm("Livre INDISPONIBLE",0);
+		}
+		
+		
+		else{			
+				sqlq.setEmpruntEnCours(timeStamp,idAdherent,idLivre);
+				sqlq.setStatusExemplaire(0,Integer.parseInt(idLivre));
+				fenEmprunt.setConfirm("ok",1);
+			}
 		
 }
 }
